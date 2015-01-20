@@ -7,7 +7,8 @@ class UsersController < ApplicationController
     @user.set_temporary_password
     @user.change_password = true
     if @user.save
-      UserMailer.signup_email(@user, @user.temp_password).deliver_later
+      RegistrationEmailJob.set(wait: 20.seconds).perform_later(@user, @user.temp_password)
+      #UserMailer.signup_email(@user, @user.temp_password).deliver_later
       render :status => 200,
            :json => { :success => true,
                       :info => "Registered",
