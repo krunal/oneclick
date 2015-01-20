@@ -9,7 +9,14 @@ class SessionsController < ApplicationController
       render :status => 200,
         :json => { :success => true,
                    :info => "Logged in",
-                   :data => { :auth_token => user.authentication_token, :user => @user  } }
+                   :data => { 
+                     :auth_token => user.authentication_token, 
+                     :user => {
+                       id: user.id,
+                       email: user.email,
+                       name: user.name,
+                       change_password: user.change_password } }
+                  }
     else
       render :status => 200,
              :json => { :success => false,

@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :files
-  resources :passwords
+  post 'passwords', :to => "passwords#update"
+  post 'passwords/reset', :to => "passwords#reset"
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

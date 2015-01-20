@@ -28,8 +28,9 @@ ActiveRecord::Schema.define(version: 20150115210241) do
     t.string   "password_hash",        limit: 255
     t.string   "password_salt",        limit: 255
     t.string   "authentication_token", limit: 255
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.boolean  "change_password",      limit: 1,   default: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
   end
 
 end
