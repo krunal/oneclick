@@ -1,3 +1,4 @@
+# This migration comes from aadhar (originally 20150130043153)
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|

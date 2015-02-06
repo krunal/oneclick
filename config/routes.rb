@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
-  resources :users
-  resources :sessions
+
+  mount Aadhar::Engine => "/aadhar"
+
+  resources :users, :only => [:create], :to => "aadhar/users"
+  resources :sessions, :only => [:create, :destroy], :to => "aadhar/sessions"
+  post 'passwords', :to => "aadhar/passwords#update"
+  post 'passwords/reset', :to => "aadhar/passwords#reset"
+
   resources :files
-  post 'passwords', :to => "passwords#update"
-  post 'passwords/reset', :to => "passwords#reset"
-  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
