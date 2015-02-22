@@ -15,10 +15,12 @@ default: &default
   pool: 5
   username: root
   password: mysql
-  socket: /tmp/mysql.sock
 
 development:
   <<: *default
+  username: root
+  password: 
+  socket: /tmp/mysql.sock
   database: oneclick_development
 
 # Warning: The database defined as "test" will be erased and

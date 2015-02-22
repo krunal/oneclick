@@ -39,4 +39,14 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+     address:              'smtp.gmail.com',
+     port:                 465,
+     domain:               '104.237.130.169',
+     user_name:            'hello@iclickishare.com',
+     password:             'Ognam321temp123',
+     authentication:       'plain'}
+  
 end

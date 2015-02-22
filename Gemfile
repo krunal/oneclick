@@ -13,6 +13,8 @@ gem 'carrierwave'
 
 gem 'mini_magick'
 
+gem 'delayed_job_active_record'
+
 gem 'pry-rails', :group => :development
 gem 'spring', :group => :development
 gem 'puma', :group => :development
