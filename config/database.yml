@@ -19,7 +19,7 @@ default: &default
 development:
   <<: *default
   username: root
-  password: 
+  password: mysql
   socket: /tmp/mysql.sock
   database: oneclick_development
 
