@@ -6,7 +6,7 @@ class FilesController < ApplicationController
   end
 
   def index
-    @attachments = Attachment.where(user_id: current_user.id)
+    @attachments = Attachment.where(user_id: current_user.id).all
     render json: @attachments 
   end
 
