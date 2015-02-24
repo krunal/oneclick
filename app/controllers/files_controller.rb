@@ -1,10 +1,8 @@
 class FilesController < ApplicationController
-  before_filter :authenticate
+  before_filter :authenticate, :only => [:create]
 
   def create
-    binding.pry
   	@attachment = Attachment.create!(file_object: params[:file_object], filename: params[:file_object].original_filename, user_id: current_user.id)
-  	render json: @attachment
   end
 
   def index
@@ -13,8 +11,7 @@ class FilesController < ApplicationController
   end
 
   def show
-  	@attachment = Attachment.where(id: params[:id])
-    render json: @attachment 
+    @attachment = Attachment.where(id: params[:id]).first
   end
 end
 

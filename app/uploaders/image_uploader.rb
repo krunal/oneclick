@@ -16,6 +16,33 @@ class ImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  def default_url
+    "#{model.class.to_s.underscore.downcase}/#{mounted_as}/missing/" + [version_name, 'missing.png'].compact.join('_')
+  end
+
+  process :quality => 85
+
+  version :big do
+    process :convert => 'png'
+    process :resize_to_fit => [1200, 2400]
+    process :quality => 95
+  end
+
+  version :medium do
+    process :convert => 'png'
+    process :resize_to_fit => [500, 500]
+    process :quality => 95
+  end
+
+  version :small do
+    process :convert => 'png'
+    process :resize_to_fit => [50, 50]
+    process :quality => 95
+  end
+
+
+
+
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
@@ -24,38 +51,28 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  # Process files as they are uploaded:
-  # process :scale => [200, 300]
+  #Process files as they are uploaded:
+  # process :scale => [100, 2000]
   #
   # def scale(width, height)
   #   # do something
   # end
 
-  # Create different versions of your uploaded files:
   
-  version :small do 
-    process :resize_to_fit => [50, 50] 
-  end 
-
-  version :medium do 
-    process :resize_to_fill => [398, 398] 
-  end 
-
-  version :big do 
-    process :resize_to_fill => [700, 2000] 
-  end 
-
-
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  # def extension_white_list
-  #   %w(jpg jpeg gif png)
-  # end
+  def extension_white_list
+    %w(jpg jpeg gif png bmp tif tiff)
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
-  #   "something.jpg" if original_filename
+  #   "#{model.nicely_formatted_filename}.png"
   # end
 
+
+  private
+
+  
 end
