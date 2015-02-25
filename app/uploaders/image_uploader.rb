@@ -20,28 +20,29 @@ class ImageUploader < CarrierWave::Uploader::Base
     "#{model.class.to_s.underscore.downcase}/#{mounted_as}/missing/" + [version_name, 'missing.png'].compact.join('_')
   end
 
-  process :quality => 85
+  process :convert => 'png'
 
   version :big do
     process :convert => 'png'
-    process :resize_to_fit => [1200, 2400]
-    process :quality => 95
+    process :resize_to_fit => [1280, 1280]
+    process :quality => 100
   end
 
   version :medium do
     process :convert => 'png'
-    process :resize_to_fit => [500, 500]
-    process :quality => 95
+    process :resize_to_fit => [700, 700]
+    process :quality => 100
   end
 
   version :small do
     process :convert => 'png'
     process :resize_to_fit => [50, 50]
-    process :quality => 95
+    process :quality => 100
   end
 
-
-
+  def filename
+    super.chomp(File.extname(super)) + '.png' if original_filename.present?
+  end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
