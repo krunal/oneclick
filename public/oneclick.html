@@ -1,0 +1,41 @@
+<!doctype html>
+<html data-user-agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36">
+  <head>
+    <title>Oneclick</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+  </head>
+
+  <body>
+     <div> One click </div>
+     <button id="full_small_button">Full Image</button>
+     <div>
+       <img id="image" src="" image_small_url="" image_full_url="" alt="">
+     </div>
+
+     <script>
+    
+    $("#full_small_button").click(function(){
+        if ($.trim($(this).text()) === 'Full Image') {
+            $(this).text('Small Image');
+            $("#image").attr('src', $("#image").attr('image_full_url'));
+        } else {
+            $(this).text('Full Image');
+            $("#image").attr('src', $("#image").attr('image_small_url'));
+        }
+        
+        return false; 
+    }); 
+     var splitUrlArray = window.location.href.split('/');
+     var lastPart = splitUrlArray.pop();
+     $.ajax({
+      url: "http://mangospring.ms.dev/files/" + lastPart + ".json",      
+      complete: function(data){
+        jQuery("#image").attr('src', data.responseJSON.file.medium_image_url );
+        jQuery("#image").attr('image_small_url', data.responseJSON.file.medium_image_url );
+        jQuery("#image").attr('image_full_url', data.responseJSON.file.big_image_url );
+      }
+     });
+     </script>
+  </body>
+</html>
