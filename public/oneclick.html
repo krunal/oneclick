@@ -27,9 +27,11 @@
         return false; 
     }); 
      var splitUrlArray = window.location.href.split('/');
+     if (!location.origin)
+       location.origin = location.protocol + "//" + location.host
      var lastPart = splitUrlArray.pop();
      $.ajax({
-      url: "http://mangospring.ms.dev/files/" + lastPart + ".json",      
+      url: location.origin + "/files/" + lastPart + ".json",      
       complete: function(data){
         jQuery("#image").attr('src', data.responseJSON.file.medium_image_url );
         jQuery("#image").attr('image_small_url', data.responseJSON.file.medium_image_url );
