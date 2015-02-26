@@ -11,7 +11,12 @@ class FilesController < ApplicationController
   end
 
   def show
-    @attachment = Attachment.where(id: params[:id]).first
+    id = is_integer(params[:id]) ? params[:id] : Base64.decode64(params[:id]).chomp
+    @attachment = Attachment.where(id: id).first
+  end
+
+  def is_integer(str)
+    str.to_i.to_s == str
   end
 end
 

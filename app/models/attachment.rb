@@ -4,4 +4,9 @@ class Attachment < ActiveRecord::Base
 
   belongs_to :user
 
+  def mlink
+  	"/icis/files/#{Base64.encode64(id.to_s).chomp}"
+  end
+
+
 end
