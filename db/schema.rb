@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150222194833) do
+ActiveRecord::Schema.define(version: 20150227224640) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "file_object", limit: 255
@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(version: 20150222194833) do
     t.integer  "user_id",     limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "authentication_tokens", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "token",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -39,14 +46,13 @@ ActiveRecord::Schema.define(version: 20150222194833) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",                 limit: 255
-    t.string   "email",                limit: 255
-    t.string   "password_hash",        limit: 255
-    t.string   "password_salt",        limit: 255
-    t.string   "authentication_token", limit: 255
-    t.boolean  "change_password",      limit: 1,   default: false
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.string   "name",            limit: 255
+    t.string   "email",           limit: 255
+    t.string   "password_hash",   limit: 255
+    t.string   "password_salt",   limit: 255
+    t.boolean  "change_password", limit: 1,   default: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
   end
 
 end
