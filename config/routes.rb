@@ -2,8 +2,8 @@ Rails.application.routes.draw do
 
   mount Aadhar::Engine => "/aadhar"
 
-  resources :users, :only => [:create], :to => "aadhar/users"
-  resources :sessions, :only => [:create, :destroy], :to => "aadhar/sessions"
+  resources :users, :only => [:create], controller: "aadhar/users"
+  resources :sessions, :only => [:create, :destroy], controller: "aadhar/sessions"
   post 'passwords', :to => "aadhar/passwords#update"
   post 'passwords/reset', :to => "aadhar/passwords#reset"
 

@@ -7,7 +7,9 @@ gem 'rails-api'
 
 gem 'jbuilder'
 
-gem 'aadhar'
+gem 'kaminari'
+
+gem 'aadhar', :path => "/home/krunal/code/aadhar"
 
 gem 'mysql2'
 

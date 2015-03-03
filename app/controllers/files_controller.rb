@@ -6,8 +6,9 @@ class FilesController < ApplicationController
   end
 
   def index
-    @attachments = Attachment.where(user_id: current_user.id).all
-    render json: @attachments 
+    @attachments = Attachment.where(user_id: current_user.id).includes(:user)
+      .page(params[:page] || 1).per(10)
+      .order("created_at desc").all
   end
 
   def show
