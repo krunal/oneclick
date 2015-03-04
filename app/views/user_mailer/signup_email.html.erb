@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <center>
+    <table width="580" cellspacing="0" cellpadding="0" border="0" style="font-family:arial,'lucida grande','lucida sans','lucida sans unicode',tahoma,verdana,sans-serif;background:#FFF;border:2px solid #eee;padding: 10px 0px;background-color:#fff;text-align:left;">
+      <tr>
+        <td valign="top" style="padding: 15px;font-size: 14px; color: #000000; background-color:#ffffff;">
+          Hello <%= @user.name.titleize.strip %>!
+          <p style="margin:20px 0px;"><%=  "Thank you for creating a oneClick account. You're all ready to go!" %></p>
+         
+         <p style="margin:20px 0px;"><%=  "We are really excited to have you as a member of oneClick, and assure you of our constant support and endeavor to make this the best ever screen capture and share experience! " %></p>
+
+          <p style="margin:10px 0px;color:#CC3333; font-weight: bold; font-size: 18px;"><%=  "Please use following information to login" %></p>
+          <p style="margin:10px 0px;"><%=  "Username" %>: <b><%= @user.email -%></b></p>
+          <p style="margin:10px 0px;"><%=  "Password" %>: <b><%= @temp_password -%></b></p>
+          <br/>
+          <p  style="margin:20px 0px 10px 0px;">
+            <%=  'We hop you enjoy oneClick, Please let us know if you have questions or feedback by sending an email to hello@iclickishare.com.' %>
+          </p>
+        </td>
+      </tr>
+      <tr>
+       <td style="padding: 10px 15px 15px; font-size:16px;background:#fff;">
+          <p style="margin:0px 0px;">
+             <%=  "Cheers," %>,<br>
+             oneClick Team<br> 
+          </p>
+          <p style="margin:0px 0px;">
+            Please let us know if you have questions or feedback by sending an email to hello@iclickishare.com.
+          </p>
+       </td>
+      </tr>       
+      
+    </table>
+</center>
+  </body>
+</html>
