@@ -9,7 +9,7 @@ gem 'jbuilder'
 
 gem 'kaminari'
 
-gem 'aadhar', :path => "/home/krunal/code/aadhar"
+gem 'aadhar'#, :path => "/home/krunal/code/aadhar"
 
 gem 'mysql2'
 
