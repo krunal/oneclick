@@ -3,24 +3,109 @@
   <head>
     <title>Oneclick</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    
+     <link rel="stylesheet" type="text/css" href="/stylesheets/common.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/navigation.css">
+
   </head>
 
   <body>
-     <div> One click </div>
-     <button id="full_small_button">Full Image</button>
-     <div>
-       <img id="image" src="" image_small_url="" image_full_url="" alt="">
-     </div>
+
+<div class="ms-main-bg"> </div>
+
+<div class="ms-main-contain">
+  <div id="shell-header-navigation" class="ss-heading-navigation bottom-20 ">
+  <div id="navigation" class="topbar">
+      <div id="shell-header-navigation" class="">
+  <div id="navigation" class="topbar">
+    <div class="topbar-inner nav-fixed simple-share-heading oneclick-heading" id="ms-main-nav">
+      <div class="container">
+        <ul id="user_top_header" class="nav user-top-nav sortable">
+          <!-- Logo -->
+          <li class="flip-logo">
+            <div class="hover ms-logo topbar-inner">
+              <div class="front">
+                <h1 id="domain_logo_img">
+                  <a href="/ce/pulse/user/home">
+                      <img alt="Domain logo" src="https://hub.mangoapps.com/media/b89d?type=domain&amp;filename=1406548450494_mangoapps_logo.png&amp;width=200&amp;height=47&amp;scale=_medium">   
+                    </a>
+                    <a href="/ce/pulse/user/home"><img alt="Domain logo" src="https://hub.mangoapps.com/media/b89d?type=domain&amp;filename=1406548450494_mangoapps_logo.png&amp;width=200&amp;height=47&amp;scale=_medium"></a>
+                  <span class="clearfloat"></span>
+                </h1>
+              </div>
+              <div class="back home-link topbar-inner">
+                <a href="/ce/pulse/user/home" data-no-turbolink="" class="modules-btn-container ">
+                  <span class="home-icon">&nbsp;</span>
+                  <span class="logo-text"> Home</span>
+                </a>
+              </div>
+            </div></li>
+            <!-- /Logo -->
+          </ul>
+          
+        </div>
+      <div class="clearfloat"></div>
+      </div>
+    </div>
+  </div>
+
+
+
+    <div class="topbar-inner ss-topbar not-tt  fheader oneclick-uploader" id="ms-main-nav">
+        <div class="container">
+          <div class="file_name left">
+
+            <span id="uploader_detail"></span>
+          </div>
+          <div class="right">
+
+            <!-- Download link -->
+              <div class="actions">
+                <ul class="acltion_links">
+                  <span id="actions_only_after_following_338803">
+                    <li>
+                      <a title="Download this file" class="download-file-link_s_share actionbutton success" href="" id="download_link">
+                        Download 
+                      </a>
+                    </li>
+                  </span>
+                </ul>
+              </div>
+
+            <!-- Download link -->
+          </div>
+          <div class="clearfloat"></div>
+        </div>
+    </div>
+
+
+    <div id="fullscreen" class="fullscreen_button">
+      <a title="Full screen" class="fullscreen_icon" href="javascript://" id="full_small_button" >
+        Full Screen
+      </a>
+    </div>
+    <div align="center">
+      <img id="image" src="" image_sfullScreen_link_secmall_url="" image_full_url="" alt="">
+    </div>
+   
+
+  </div>
+
+
+</div>
+</div>    
 
      <script>
     
     $("#full_small_button").click(function(){
-        if ($.trim($(this).text()) === 'Full Image') {
-            $(this).text('Small Image');
+        if ($.trim($(this).text()) === 'Full Screen') {
+            $(this).text('Small Screen');
+            $(".oneclick-heading").hide();
+            $(".oneclick-uploader").removeClass("not-tt");
             $("#image").attr('src', $("#image").attr('image_full_url'));
         } else {
-            $(this).text('Full Image');
+            $(this).text('Full Screen');
+            $(".oneclick-heading").show();
+            $(".oneclick-uploader").addClass("not-tt");
             $("#image").attr('src', $("#image").attr('image_small_url'));
         }
         
@@ -33,9 +118,12 @@
      $.ajax({
       url: location.origin + "/files/" + lastPart + ".json",      
       complete: function(data){
+        var uploader_name = data.responseJSON.file.user.name;
+        jQuery("#download_link").attr("href", "/files/" + data.responseJSON.file.id + "/download.json")
         jQuery("#image").attr('src', data.responseJSON.file.medium_image_url );
         jQuery("#image").attr('image_small_url', data.responseJSON.file.medium_image_url );
         jQuery("#image").attr('image_full_url', data.responseJSON.file.big_image_url );
+        jQuery("#uploader_detail").html("Uploaded by <span title='" + uploader_name + "'>" + uploader_name + "</span>, " + data.responseJSON.file.created_at);
       }
      });
      </script>

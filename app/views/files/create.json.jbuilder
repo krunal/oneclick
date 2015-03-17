@@ -10,4 +10,5 @@ json.file do
   json.big_image_url @attachment.file_object.big.url
   json.medium_image_url @attachment.file_object.medium.url
   json.original_image_url @attachment.file_object.url
+  json.created_at @attachment.created_at.strftime("%b %d, %Y, %H:%M")
 end

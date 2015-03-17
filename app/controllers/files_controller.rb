@@ -16,6 +16,11 @@ class FilesController < ApplicationController
     @attachment = Attachment.where(id: id).first
   end
 
+  def download
+    @attachment = Attachment.where(id: params[:id]).first
+    send_file @attachment.file_object.path
+  end
+
   def is_integer(str)
     str.to_i.to_s == str
   end

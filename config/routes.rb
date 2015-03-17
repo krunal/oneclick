@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   post 'passwords', :to => "aadhar/passwords#update"
   post 'passwords/reset', :to => "aadhar/passwords#reset"
 
-  resources :files
+  resources :files do 
+    member do
+      get 'download' 
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
