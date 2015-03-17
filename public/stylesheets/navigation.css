@@ -663,7 +663,7 @@
   vertical-align: middle;
 }
 .flip-logo .home-link > a > span.home-icon{
-  background:url(/ce/pulse/images/v2/home-icon_sprite.png) no-repeat -32px 3px; 
+  background:url(/images/home-icon_sprite.png) no-repeat -32px 3px; 
   display: inline-block;
   width: 32px;
   height: 32px;
