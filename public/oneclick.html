@@ -79,7 +79,7 @@
 
 
     <div id="fullscreen" class="fullscreen_button">
-      <a title="Full screen" class="fullscreen_icon" href="javascript://" id="full_small_button" >
+      <a title="Full screen" class="fullscreen_icon" href="javascript://" id="full_small_button" style="display:block" >
         Full Screen
       </a>
     </div>
@@ -98,12 +98,12 @@
     
     $("#full_small_button").click(function(){
         if ($.trim($(this).text()) === 'Full Screen') {
-            $(this).text('Small Screen');
+            $(this).text('Small Screen').removeClass("fullscreen_icon").addClass("smallscreen_icon");
             $(".oneclick-heading").hide();
             $(".oneclick-uploader").removeClass("not-tt");
             $("#image").attr('src', $("#image").attr('image_full_url'));
         } else {
-            $(this).text('Full Screen');
+            $(this).text('Full Screen').removeClass("smallscreen_icon").addClass("fullscreen_icon");
             $(".oneclick-heading").show();
             $(".oneclick-uploader").addClass("not-tt");
             $("#image").attr('src', $("#image").attr('image_small_url'));
