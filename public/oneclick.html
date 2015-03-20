@@ -76,7 +76,8 @@
       </a>
     </div>
     <div align="center">
-      <img id="image" src="" image_sfullScreen_link_secmall_url="" image_full_url="" alt="">
+      <img id="image" src="" alt="">
+      <img id="big_image" src="" style="display:none">
     </div>
    
 
@@ -113,6 +114,7 @@
         var uploader_name = data.responseJSON.file.user.name;
         jQuery("#download_link").attr("href", "/files/" + data.responseJSON.file.id + "/download.json")
         jQuery("#image").attr('src', data.responseJSON.file.medium_image_url );
+        jQuery("#big_image").attr('src', data.responseJSON.file.big_image_url );
         jQuery("#image").attr('image_small_url', data.responseJSON.file.medium_image_url );
         jQuery("#image").attr('image_full_url', data.responseJSON.file.big_image_url );
         jQuery("#uploader_detail").html("Uploaded by <span title='" + uploader_name + "'>" + uploader_name + "</span>, " + data.responseJSON.file.created_at);
